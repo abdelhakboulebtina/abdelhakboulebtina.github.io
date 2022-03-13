@@ -14,7 +14,17 @@ $(document).ready(function(){
             $('.scroll-up-btn').removeClass("show");
         }
     });
-
+    $('#submit').click((e)=>{
+        var params={
+            from_name:$('#name').val(),
+            email_id:$('#email').val(),
+            subject:$('#subject').val(),
+            message:$('#message').val(),
+        }
+        emailjs.send("service_ecfae1h","template_whagfys",params).then((res)=>{
+            alert("Success!"+res.status)
+        })
+    })
     // slide-up script
     $('.scroll-up-btn').click(function(){
         $('html').animate({scrollTop: 0});
