@@ -15,15 +15,21 @@ $(document).ready(function(){
         }
     });
     $('#submit').click((e)=>{
+        $('#submit').prop('disabled', true);
         var params={
             from_name:$('#name').val(),
             email_id:$('#email').val(),
             subject:$('#subject').val(),
             message:$('#message').val(),
         }
-        emailjs.send("service_ecfae1h","template_whagfys",params).then((res)=>{
-            alert("Success!"+res.status)
+        emailjs.send("service_ecfae1h","template_whagfys",params).then(res=>{
+            $('#name').val('')
+            $('#email').val('')
+            $('#subject').val('')
+            $('#message').val('')
+            $.notify("Message Sent:)", "success", { elementPosition:"top left" });
         })
+        $('#submit').prop('disabled', false);
     })
     // slide-up script
     $('.scroll-up-btn').click(function(){
