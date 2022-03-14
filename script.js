@@ -14,7 +14,9 @@ $(document).ready(function(){
             $('.scroll-up-btn').removeClass("show");
         }
     });
-    $('#submit').click((e)=>{
+    $('#submit').click((event)=>{
+        var isFormValid=$('#form')[0].checkValidity()
+        if(isFormValid){
         $('#submit').prop('disabled', true);
         var params={
             from_name:$('#name').val(),
@@ -30,7 +32,11 @@ $(document).ready(function(){
             $.notify("Message Sent:)", "success", { elementPosition:"top left" });
         })
         $('#submit').prop('disabled', false);
-    })
+    }else{
+        $('#form')[0].reportValidity();
+    }
+})
+
     // slide-up script
     $('.scroll-up-btn').click(function(){
         $('html').animate({scrollTop: 0});
